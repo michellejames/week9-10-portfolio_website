@@ -20,10 +20,26 @@ var portfolioProjects = [
 	{
 	name: "To-Do List",
 	thumbUrl: "assets/img/thumbnail_IP_todo.png",
-	linkUrl: "http://circuslabs.net/taylinglarge/week7/index.html",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/intermediate_programming/week7:8-todo_list/",
 	course: "Intermediate Programming",
 	class: "all-projects",
 	description: "A pink To-Do List which was programmed using Vanilla JavaScript only.",
+	},
+	{
+	name: "Space Shooter Game",
+	thumbUrl: "assets/img/thumbnail_IP_space-shooter.png",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/intermediate_programming/_spaceship%20game/",
+	course: "Intermediate Programming",
+	class: "all-projects",
+	description: "This space shooter game is the result of a MeetUp I've attened during this quarter.",
+	},
+	{
+	name: "Drum Kit",
+	thumbUrl: "assets/img/thumbnail_IP_drum-kit.png",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/intermediate_programming/1_DrumKit/",
+	course: "Intermediate Programming",
+	class: "all-projects",
+	description: "Building a drum kit using Vanilla JavaScript.",
 	},
 	{
 	name: "First Responsive Website",
@@ -60,7 +76,7 @@ var portfolioProjects = [
 	{
 	name: "S'mores Builder",
 	thumbUrl: "assets/img/thumbnail_WD_smores.png",
-	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_dev_two/week8-best_city/",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_dev_two/week9-smores-final/",
 	course: "Web Development II",
 	class: "all-projects",
 	description: "The final project for Web Development II. A website about building the perfect S'more.",
@@ -72,14 +88,6 @@ var portfolioProjects = [
 	course: "Web Animations",
 	class: "all-projects",
 	description: "Creating a GIF with Photoshop's Timeline Feature.",
-	},
-	{
-	name: "Earth & Moon",
-	thumbUrl: "assets/img/thumbnail_WA_orbit.png",
-	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_animations/week1-gif/unicorn.gif",
-	course: "Web Animations",
-	class: "all-projects",
-	description: "Creating a CSS Animation of the moon rotating around the earth.",
 	},
 	{
 	name: "Taxi Driver Poster",
@@ -100,7 +108,7 @@ var portfolioProjects = [
 	{
 	name: "Beyonce Website",
 	thumbUrl: "assets/img/thumbnail_ID_project1.png",
-	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_animations/week5:6-taxi_driver_poster/",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/interactive_design/project1_final.pdf",
 	course: "Interactive Design",
 	class: "all-projects",
 	description: "Re-Design of Artist Website. Chosen artist was Beyonce.",
@@ -108,7 +116,7 @@ var portfolioProjects = [
 	{
 	name: "Dr. Bronner Website",
 	thumbUrl: "assets/img/thumbnail_ID_project2.png",
-	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_animations/week5:6-taxi_driver_poster/",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/interactive_design/project2_final.pdf",
 	course: "Interactive Design",
 	class: "all-projects",
 	description: "Re-Design of Product Website. Chosen product was Dr. Bronner Liquid Castile Soap.",
@@ -120,6 +128,9 @@ var loadPage = function () {
 	var aboveHeader = document.createElement("div");
 	aboveHeader.classList.add("above-header");
 	document.body.appendChild(aboveHeader);
+
+	var logoParent = document.querySelector(".logo-parent");
+	aboveHeader.appendChild(logoParent);
 
 	var header = document.createElement("div");
 	header.classList.add("header");
@@ -190,9 +201,13 @@ var loadPage = function () {
 		}
 
 		var imgBox = document.createElement("div");
+		var textContainer = document.createElement("div");
+		textContainer.classList.add("text-container");
+
 		imgBox.classList.add("img-box");
 		imgBox.setAttribute("data-index", i);
 		gallery.appendChild(imgBox);
+		imgBox.appendChild(textContainer);
 
 		var thumb = document.createElement("img");
 		thumb.setAttribute("src", portfolioProjects[i].thumbUrl);
@@ -202,23 +217,23 @@ var loadPage = function () {
 		var projectName = document.createElement("h1");
 		projectName.classList.add("project-name");
 		projectName.innerHTML = portfolioProjects[i].name;
-		imgBox.appendChild(projectName);
+		textContainer.appendChild(projectName);
 
 		var projectCourse = document.createElement("h2");
 		projectCourse.classList.add("project-course");
 		projectCourse.innerHTML = portfolioProjects[i].course;
-		imgBox.appendChild(projectCourse);
+		textContainer.appendChild(projectCourse);
 
 		var projectDescription = document.createElement("h2");
 		projectDescription.classList.add("project-description");
 		projectDescription.innerHTML = portfolioProjects[i].description;
-		imgBox.appendChild(projectDescription);
+		textContainer.appendChild(projectDescription);
 
 		var projectLink = document.createElement("a");
 		projectLink.classList.add("project-link");
 		projectLink.innerHTML = "Click here";
 		projectLink.setAttribute ("href", portfolioProjects[i].linkUrl);
-		imgBox.appendChild(projectLink);
+		textContainer.appendChild(projectLink);
 
 		allProjectsButton.addEventListener("click", displayAllProjects);
 		intermediateProgrammingButton.addEventListener("click", displayIntermediateProgrammingProjects);
@@ -373,11 +388,53 @@ function displayInteractiveDesignProjects () {
 	}
 }
 
+var thumbnailLogo = document.querySelector(".thumbnail");
 
+window.addEventListener("resize", resizeMenu);
+thumbnailLogo.addEventListener("click", toggleMenu);
 
+function resizeMenu () {
 
+	console.log(window.innerWidth);
 
+	if(window.innerWidth < 480) {
+		var navItems = document.querySelector(".nav").children;
+		for (var i = navItems.length - 1; i >= 0; i--) {
+			if (!navItems[i].classList.contains("thumbnail")) {
+				navItems[i].style.display = "none";
+			}
+		}
+	} else if( window.innerWidth > 480) {
+		var navItems = document.querySelector(".nav").children;
+		for (var i = navItems.length - 1; i >= 0; i--) {
+			if (!navItems[i].classList.contains("thumbnail")) {
+				navItems[i].style.display = "unset";
+			}
+		}
+	}
+}
+resizeMenu();
 
+function toggleMenu () {
+	if(window.innerWidth < 480) {
+
+		var thumbnailLogo = document.querySelector(".thumbnail");
+		var navItems = document.querySelector(".nav").children;
+		var nav = document.querySelector(".nav");
+
+		for (var i = navItems.length - 1; i >= 0; i--) {
+
+			if (navItems[i].style.display == "none") {
+				navItems[i].style.display = "unset";
+				nav.classList.add("active");
+			} else if (!navItems[i].classList.contains("thumbnail")) {
+				navItems[i].style.display = "none";
+				nav.classList.remove("active");
+
+			}
+		}
+	}
+}
 
 
 
