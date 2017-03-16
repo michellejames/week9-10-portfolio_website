@@ -100,7 +100,7 @@ var portfolioProjects = [
 	{
 	name: "Animated Info Graphic",
 	thumbUrl: "assets/img/thumbnail_WA_infographic.png",
-	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_animations/week5:6-taxi_driver_poster/",
+	linkUrl: "http://circuslabs.net/~michele.james/2nd%20quarter/web_animations/week8:9-animated_infographic/",
 	course: "Web Animations",
 	class: "all-projects",
 	description: "An animated info graphic on how to become a moring person. I've used TweenMax to animate the info graphic.",
