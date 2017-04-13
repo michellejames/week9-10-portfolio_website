@@ -132,7 +132,8 @@ html, body {
 }
 
 #item-7:hover img {
-	transform: rotate(1turn) scale(.9) rotate(-10deg);
+	transform: rotate(1turn) scale(.7) rotate(-10deg);
+	border: 40px solid black;
 }
 
 #item-8 img{
